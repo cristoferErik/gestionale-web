@@ -15,7 +15,17 @@ import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
+@Getter
+@Setter
+@Builder
+@AllArgsConstructor
+@NoArgsConstructor
 @Entity
 @Table(name = "servers")
 public class Server {
@@ -39,63 +49,5 @@ public class Server {
 
     @OneToMany(mappedBy = "server",cascade = CascadeType.ALL)
     private List<WebSite> webSites;
-
-    public Server() {}
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public String getServerUrl() {
-        return serverUrl;
-    }
-
-    public void setServerUrl(String serverUrl) {
-        this.serverUrl = serverUrl;
-    }
-
-    public String getPanelloUrl() {
-        return panelloUrl;
-    }
-
-    public void setPanelloUrl(String panelloUrl) {
-        this.panelloUrl = panelloUrl;
-    }
-
-    public String getUserServer() {
-        return userServer;
-    }
-
-    public void setUserServer(String userServer) {
-        this.userServer = userServer;
-    }
-
-    public String getPasswordServer() {
-        return passwordServer;
-    }
-
-    public void setPasswordServer(String passwordServer) {
-        this.passwordServer = passwordServer;
-    }
-
-    public Customer getCustomer() {
-        return customer;
-    }
-
-    public void setCustomer(Customer customer) {
-        this.customer = customer;
-    }
-
-    public List<WebSite> getWebSites() {
-        return webSites;
-    }
-
-    public void setWebSites(List<WebSite> webSites) {
-        this.webSites = webSites;
-    }
 
 }

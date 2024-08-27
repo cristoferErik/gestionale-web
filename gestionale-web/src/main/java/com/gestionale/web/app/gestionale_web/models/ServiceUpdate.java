@@ -10,7 +10,18 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
+
+@Getter
+@Setter
+@Builder
+@AllArgsConstructor
+@NoArgsConstructor
 @Entity
 @Table(name="service_updates")
 public class ServiceUpdate {
@@ -27,74 +38,5 @@ public class ServiceUpdate {
 
     @OneToMany(mappedBy = "serviceUpdate")
     private ArrayList<WebSite> webSites;
-
-    public ServiceUpdate() {}
-
-    public ServiceUpdate
-    (
-        Long id, 
-        String dateUpdate, 
-        Date dateStart, 
-        Date dateEnd, 
-        Boolean state,
-        ArrayList<WebSite> webSites
-
-    ) {
-        this.id = id;
-        this.dateUpdate = dateUpdate;
-        this.dateStart = dateStart;
-        this.dateEnd = dateEnd;
-        this.state = state;
-        this.webSites = webSites;
-    }
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public String getDateUpdate() {
-        return dateUpdate;
-    }
-
-    public void setDateUpdate(String dateUpdate) {
-        this.dateUpdate = dateUpdate;
-    }
-
-    public Date getDateStart() {
-        return dateStart;
-    }
-
-    public void setDateStart(Date dateStart) {
-        this.dateStart = dateStart;
-    }
-
-    public Date getDateEnd() {
-        return dateEnd;
-    }
-
-    public void setDateEnd(Date dateEnd) {
-        this.dateEnd = dateEnd;
-    }
-
-    public Boolean getState() {
-        return state;
-    }
-
-    public void setState(Boolean state) {
-        this.state = state;
-    }
-
-    public ArrayList<WebSite> getWebSites() {
-        return webSites;
-    }
-
-    public void setWebSites(ArrayList<WebSite> webSites) {
-        this.webSites = webSites;
-    }
-
     
 }

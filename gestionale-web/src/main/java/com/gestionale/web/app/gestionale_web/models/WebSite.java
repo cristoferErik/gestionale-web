@@ -13,7 +13,17 @@ import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
+@Getter
+@Setter
+@Builder
+@AllArgsConstructor
+@NoArgsConstructor
 @Entity
 @Table(name="web_sites")
 public class WebSite {
@@ -37,93 +47,4 @@ public class WebSite {
     @OneToMany(mappedBy = "webSite",cascade = CascadeType.ALL)
     private ArrayList<RecordUpdate> recordUpdates;
 
-    
-    public WebSite() {}
-
-    public WebSite
-    (
-        Long id,
-        String name,
-        String url,
-        Float price,
-        Date dateCreation,
-        Server server,
-        ServiceUpdate serviceUpdate,
-        ArrayList<RecordUpdate> recordUpdates
-    ) {
-        this.id = id;
-        this.name = name;
-        this.url = url;
-        this.price = price;
-        this.dateCreation = dateCreation;
-        this.server = server;
-        this.serviceUpdate = serviceUpdate;
-        this.recordUpdates = recordUpdates;
-    }
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public String getUrl() {
-        return url;
-    }
-
-    public void setUrl(String url) {
-        this.url = url;
-    }
-
-    public Float getPrice() {
-        return price;
-    }
-
-    public void setPrice(Float price) {
-        this.price = price;
-    }
-
-    public Date getDateCreation() {
-        return dateCreation;
-    }
-
-    public void setDateCreation(Date dateCreation) {
-        this.dateCreation = dateCreation;
-    }
-
-    public Server getServer() {
-        return server;
-    }
-
-    public void setServer(Server server) {
-        this.server = server;
-    }
-
-    public ServiceUpdate getServiceUpdate() {
-        return serviceUpdate;
-    }
-
-    public void setServiceUpdate(ServiceUpdate serviceUpdate) {
-        this.serviceUpdate = serviceUpdate;
-    }
-
-    public ArrayList<RecordUpdate> getRecordUpdates() {
-        return recordUpdates;
-    }
-
-    public void setRecordUpdates(ArrayList<RecordUpdate> recordUpdates) {
-        this.recordUpdates = recordUpdates;
-    }
-
-    
 }

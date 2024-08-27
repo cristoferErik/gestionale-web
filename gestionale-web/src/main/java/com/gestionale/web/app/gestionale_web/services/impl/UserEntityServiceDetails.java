@@ -19,13 +19,14 @@ import com.gestionale.web.app.gestionale_web.models.UserEntity;
 
 @Service
 public class UserEntityServiceDetails implements UserDetailsService{
+    
     @Autowired
     private UserServiceImpl userServiceImpl;
 
     @Override
     @Transactional(readOnly=true)
-    public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        Optional<UserEntity> user1 = userServiceImpl.findByUserName(username);
+    public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
+        Optional<UserEntity> user1 = userServiceImpl.findByEmail(email);
         if(user1.isEmpty()){
             throw new UsernameNotFoundException("User doesnt exist in the system!");
         }
@@ -35,9 +36,9 @@ public class UserEntityServiceDetails implements UserDetailsService{
             authorities.add(new SimpleGrantedAuthority(role.getName()));
         }
         if (authorities.isEmpty()) {
-            throw new UsernameNotFoundException("User: "+user2.getUsername() +" doesnt have any role asigned!");
+            throw new UsernameNotFoundException("User: "+user2.getEmail() +" doesnt have any role asigned!");
         }
-        User user3 = new User(user2.getUsername(), user2.getPasword(), user2.isEnable(), true, true, true, authorities);
+        User user3 = new User(user2.getEmail(), user2.getPassword(), user2.getEnable(), true, true, true, authorities);
         return user3;
     }
     

@@ -7,6 +7,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.web.PagedResourcesAssembler;
 import org.springframework.hateoas.PagedModel;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -18,6 +19,7 @@ import com.gestionale.web.app.gestionale_web.models.dtoInterface.IServerDto;
 import com.gestionale.web.app.gestionale_web.models.model_assembler.ServerModelAssembler;
 import com.gestionale.web.app.gestionale_web.services.impl.ServerServiceImpl;
 
+@CrossOrigin(originPatterns="*")
 @RestController
 @RequestMapping("/servers")
 public class ServerController {

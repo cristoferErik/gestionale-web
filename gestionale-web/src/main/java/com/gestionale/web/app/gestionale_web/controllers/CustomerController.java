@@ -9,6 +9,7 @@ import org.springframework.data.web.PagedResourcesAssembler;
 import org.springframework.hateoas.PagedModel;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -24,7 +25,7 @@ import com.gestionale.web.app.gestionale_web.models.dto.CustomerDto;
 import com.gestionale.web.app.gestionale_web.models.model_assembler.CustomerModelAssembler;
 import com.gestionale.web.app.gestionale_web.services.impl.CustomerServiceImpl;
 
-
+@CrossOrigin(originPatterns="*")
 @RestController
 @RequestMapping("/customers")
 public class CustomerController {
@@ -41,7 +42,7 @@ public class CustomerController {
     @GetMapping
     public ResponseEntity<PagedModel<CustomerDto>> getAll(
         @RequestParam (value= "page",defaultValue="0") Integer page,
-        @RequestParam (value="size",defaultValue="1") Integer size
+        @RequestParam (value="size",defaultValue="10") Integer size
         )
     {
         Pageable pageable = PageRequest.of(page,size);

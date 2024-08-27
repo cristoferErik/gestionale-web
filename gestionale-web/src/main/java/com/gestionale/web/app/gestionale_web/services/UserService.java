@@ -5,7 +5,7 @@ import java.util.Optional;
 import com.gestionale.web.app.gestionale_web.models.UserEntity;
 
 public interface UserService {
-    public UserEntity save(UserEntity user);
     public Optional<UserEntity> getUserById(Long id);
-    public Optional<UserEntity>findByUserName(String username);
+    public Optional<UserEntity>findByEmail(String username);
+    public boolean existsByEmail(String username);
 }

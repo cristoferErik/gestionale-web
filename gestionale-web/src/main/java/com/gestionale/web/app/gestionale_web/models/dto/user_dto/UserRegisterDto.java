@@ -4,9 +4,8 @@ import java.util.List;
 
 import com.gestionale.web.app.gestionale_web.models.Role;
 
-public class UserDto {
+public class UserRegisterDto {
     private Long id;
-    private String username;
     private String password;
     private String email;
     private List<Role> roles;
@@ -17,14 +16,6 @@ public class UserDto {
 
     public void setId(Long id) {
         this.id = id;
-    }
-
-    public String getUsername() {
-        return username;
-    }
-
-    public void setUsername(String username) {
-        this.username = username;
     }
 
     public String getPassword() {
