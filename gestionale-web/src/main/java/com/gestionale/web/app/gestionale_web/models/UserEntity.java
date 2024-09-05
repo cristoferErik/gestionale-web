@@ -3,6 +3,7 @@ package com.gestionale.web.app.gestionale_web.models;
 import java.util.List;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.gestionale.web.app.gestionale_web.models.token.Token;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -12,6 +13,7 @@ import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.JoinTable;
 import jakarta.persistence.ManyToMany;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.PrePersist;
 import jakarta.persistence.Table;
 import jakarta.persistence.UniqueConstraint;
@@ -56,6 +58,9 @@ public class UserEntity {
     //indica che non sara aggiunto nella base di dati
     @Column
     private Boolean enable;
+
+    @OneToMany(mappedBy="userEntity")
+    private List<Token> tokens; 
 
     @PrePersist
     public void prePersist(){

@@ -19,6 +19,7 @@ import org.springframework.stereotype.Component;
 import org.springframework.web.filter.OncePerRequestFilter;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.gestionale.web.app.gestionale_web.models.token.repository.TokenRepository;
 import static com.gestionale.web.app.gestionale_web.security.TokenJwtConfig.CONTENT_TYPE;
 import static com.gestionale.web.app.gestionale_web.security.TokenJwtConfig.HEADER_AUTHORIZATION;
 import static com.gestionale.web.app.gestionale_web.security.TokenJwtConfig.PREFIX_TOKEN;
@@ -35,6 +36,9 @@ public class JwtValidationFilter extends OncePerRequestFilter{
     @Autowired
     private JwtService jwtService;
 
+    @Autowired
+    private TokenRepository tokenRepository;
+
     @Override
     protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain) throws ServletException, IOException {
         String header = request.getHeader(HEADER_AUTHORIZATION);
@@ -45,7 +49,16 @@ public class JwtValidationFilter extends OncePerRequestFilter{
         }
         String token= header.replace(PREFIX_TOKEN,"");
         try{
+            /*-----------------qui si valida il token--------------------- */
             Claims claims = jwtService.extractClaims(token);
+            boolean tk = tokenRepository.findByToken(token)
+                                .map(t->t.isRevoked())
+                                .orElse(false);
+            if(tk){
+                filterChain.doFilter(request,response);
+                return;
+            }
+            /*------------------------------------------------------------ */
             String email =  claims.getSubject();
             String authorities = claims.get("authorities",String.class);
             List<String> listAuthorities= new ArrayList<>(Arrays.asList(authorities.split(",")));

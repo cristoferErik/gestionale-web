@@ -20,6 +20,7 @@ import static com.gestionale.web.app.gestionale_web.security.TokenJwtConfig.HEAD
 import static com.gestionale.web.app.gestionale_web.security.TokenJwtConfig.PREFIX_TOKEN;
 import com.gestionale.web.app.gestionale_web.services.UserService;
 
+import jakarta.servlet.http.HttpServletRequest;
 import jakarta.validation.Valid;
 
 
@@ -58,5 +59,11 @@ public class UserController {
         HttpHeaders headers = new HttpHeaders();
         headers.set(HEADER_AUTHORIZATION,PREFIX_TOKEN + authResponse.getToken());
         return ResponseEntity.ok().headers(headers).body(authResponse);
+    }
+    
+
+    @PostMapping("/logout")
+    public void logOut(HttpServletRequest request){
+        authService.logOut(request);
     }
 }
