@@ -15,7 +15,7 @@ import jakarta.persistence.ManyToOne;
 public class Token {
     @Id
     @GeneratedValue(strategy=GenerationType.IDENTITY)
-    private Integer Id;
+    private Long Id;
 
     private String token;
 
@@ -27,11 +27,11 @@ public class Token {
     @JoinColumn(name = "user_entity_id")
     private UserEntity userEntity;
 
-    public Integer getId() {
+    public Long getId() {
         return Id;
     }
 
-    public void setId(Integer id) {
+    public void setId(Long id) {
         Id = id;
     }
 

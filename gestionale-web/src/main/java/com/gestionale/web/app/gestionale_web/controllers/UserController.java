@@ -40,6 +40,7 @@ public class UserController {
     public ResponseEntity<String> getAll(){
         return ResponseEntity.status(HttpStatus.CREATED).body("LISTADO");
     }
+    
     @GetMapping("/{id}")
     public ResponseEntity<UserRegisterDto> getById(@Valid @PathVariable Long id){
         UserEntity user = userService.getUserById(id).get();

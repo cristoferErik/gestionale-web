@@ -9,7 +9,7 @@ public class ServerDto extends  RepresentationModel<ServerDto>{
     private String panelloUrl;
     private String userServer;
     private String passwordServer;
-    private Long customer;
+    private Long customerId;
 
     public Long getId() {
         return id;
@@ -41,10 +41,10 @@ public class ServerDto extends  RepresentationModel<ServerDto>{
     public void setPasswordServer(String passwordServer) {
         this.passwordServer = passwordServer;
     }
-    public Long getCustomer() {
-        return customer;
+    public Long getCustomerId() {
+        return customerId;
     }
-    public void setCustomer(Long customerId) {
-        this.customer = customerId;
+    public void setCustomerId(Long customerId) {
+        this.customerId = customerId;
     }
 }

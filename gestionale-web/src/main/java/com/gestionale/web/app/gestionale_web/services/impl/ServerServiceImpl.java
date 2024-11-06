@@ -37,27 +37,40 @@ public class ServerServiceImpl implements ServerService{
     }
 
     @Override
-    public Optional<Server> update(Server server, Long id) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'update'");
+    public void update(Long id,Server server) {
+        try {
+            if(getServerById(id).isPresent()){
+                save(server);
+            }
+        } catch (Exception e) {
+            throw new CustomException("Non è possibile aggiornare il server con il ID: "+id,HttpStatus.NOT_FOUND);
+        }
     }
 
     @Override
     public Optional<Server> getServerById(Long id) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'getServerById'");
+        Optional<Server> server = serverRepository.findById(id);
+        if (server.isPresent()) {
+            return server;
+        } else {
+            throw new CustomException("Server with ID " + id + "was not found!",HttpStatus.NOT_FOUND);
+        }
     }
 
     @Override
     public Server save(Server server) {
         // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'save'");
+       return serverRepository.save(server);
     }
 
     @Override
     public Boolean delete(Long id) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'delete'");
+        if(getServerById(id).isPresent()){
+            serverRepository.deleteById(id);
+            return true;
+        }else{
+            return false;
+        }  
     }
 
 }

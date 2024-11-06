@@ -17,11 +17,12 @@ import org.springframework.web.servlet.resource.NoResourceFoundException;
 public class GlobalExceptionHandler {
 
     @ExceptionHandler(CustomException.class)
-    public ResponseEntity<Map<String,Object>> handleCustomException(CustomException ex){
-        Map<String,Object> exception = new HashMap<>();
-        exception.put("status:",ex.getStatusCode());  
-        exception.put("parameter:",ex.getMessage());
-        return ResponseEntity.status(ex.getStatusCode()).body(exception);
+    public ResponseEntity<Map<String,String>> handleCustomException(CustomException ex){
+        Map<String,String> body = new HashMap<>();
+        body.put("message",ex.getMessage());
+        body.put("status",ex.getStatusCode().name());  
+        //body.put("parameter",ex.getMessage());
+        return ResponseEntity.status(ex.getStatusCode()).body(body);
     }
     @ExceptionHandler(MethodArgumentTypeMismatchException.class)
     public ResponseEntity<Map<String,Object>> handleTypeMisMatchException(MethodArgumentTypeMismatchException ex){

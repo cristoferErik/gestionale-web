@@ -11,7 +11,7 @@ import org.springframework.stereotype.Repository;
 import com.gestionale.web.app.gestionale_web.models.token.Token;
 
 @Repository
-public interface TokenRepository extends JpaRepository<Token, Integer>{
+public interface TokenRepository extends JpaRepository<Token, Long>{
 
     @Query("""
         select t from Token t inner join UserEntity u on t.userEntity.id = u.id

@@ -22,7 +22,7 @@ public class ServerModelAssembler extends  RepresentationModelAssemblerSupport<I
         serverDto.setPanelloUrl(iServerDto.getPanelloUrl());
         serverDto.setUserServer(iServerDto.getUserServer());
         serverDto.setPasswordServer(iServerDto.getPasswordServer());
-        serverDto.setCustomer(iServerDto.getCustomer().getId());
+        serverDto.setCustomerId(iServerDto.getCustomer().getId());
         return serverDto;
     }
 

@@ -33,7 +33,6 @@ public class CustomerServiceImpl implements CustomerService{
     public void updateCustomer(Customer customer,Long id) {
         try {
             if(getCustomerById(id).isPresent()){
-                customerRepository.deleteById(id);
                 save(customer);
             }
         } catch (Exception e) {

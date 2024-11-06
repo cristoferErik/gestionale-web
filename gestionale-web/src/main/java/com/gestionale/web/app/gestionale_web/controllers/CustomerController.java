@@ -61,18 +61,9 @@ public class CustomerController {
         customer.setEmail(customerDto.getEmail());
         customer.setCellphone(customerDto.getCellphone());
 
-        Customer savedCustomer=customerServiceImpl.save(customer);
+        customerServiceImpl.save(customer);
 
-        CustomerDto savedCustomerDto = new CustomerDto();
-        savedCustomerDto.setId(savedCustomer.getId());
-        savedCustomerDto.setName(savedCustomer.getName());
-        savedCustomerDto.setLastName(savedCustomer.getLastName());
-        savedCustomerDto.setCity(savedCustomer.getCity());
-        savedCustomerDto.setAddress(savedCustomer.getAddress());
-        savedCustomerDto.setEmail(savedCustomer.getEmail());
-        savedCustomerDto.setCellphone(savedCustomer.getCellphone());
-
-        return ResponseEntity.status(HttpStatus.CREATED).body(savedCustomerDto);
+        return ResponseEntity.status(HttpStatus.CREATED).body(customerDto);
     }
 
     @PutMapping("/{id}")
@@ -91,13 +82,13 @@ public class CustomerController {
         customer.setCellphone(customerDto.getCellphone());
 
         customerServiceImpl.updateCustomer(customer,id);
-        return ResponseEntity.status(HttpStatus.CREATED).body("Updated was succesful!");
+        return ResponseEntity.status(HttpStatus.NO_CONTENT).body("Updated was succesful!");
 
     }
     @DeleteMapping("/{id}")
     public ResponseEntity<String> delete(@PathVariable Long id){
         customerServiceImpl.delete(id);
-        return ResponseEntity.status(HttpStatus.FOUND).body("Delete was succesful!");
+        return ResponseEntity.status(HttpStatus.OK).body("Delete was succesful!");
     }
     @GetMapping("/{id}")
     public ResponseEntity<CustomerDto> getById(@PathVariable Long id){

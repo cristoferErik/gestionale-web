@@ -15,6 +15,7 @@ public class CustomerModelAssembler extends RepresentationModelAssemblerSupport<
     }
     @Override
     public CustomerDto toModel(Customer customer) {
+        
         CustomerDto customerDto = new CustomerDto();
         customerDto.setId(customer.getId());
         customerDto.setName(customer.getName());
@@ -25,6 +26,5 @@ public class CustomerModelAssembler extends RepresentationModelAssemblerSupport<
         customerDto.setCellphone(customer.getCellphone());
 
         return customerDto;
-    }
-    
+    } 
 }

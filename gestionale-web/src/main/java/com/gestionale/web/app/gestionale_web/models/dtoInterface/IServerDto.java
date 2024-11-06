@@ -4,7 +4,7 @@ package com.gestionale.web.app.gestionale_web.models.dtoInterface;
 
 import com.gestionale.web.app.gestionale_web.models.Customer;
 
-//Should have getter methods for every properties of the column of the Server class
+//Deve di avere una funzione per ogni atributo
 public interface IServerDto {
     public Long getId();
     public String getServerUrl();

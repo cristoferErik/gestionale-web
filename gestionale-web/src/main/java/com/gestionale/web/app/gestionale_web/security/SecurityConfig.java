@@ -23,8 +23,8 @@ public class SecurityConfig {
     public SecurityFilterChain filterChain(HttpSecurity http)throws Exception{
         return http.authorizeHttpRequests(
             (authz)->authz
-            .requestMatchers("/users/**").permitAll()
-            .requestMatchers("/customers","/servers").hasRole("ADMIN")
+            .requestMatchers("/users/**","/customers/**","/servers/**","/websites/**","/serviceUpdates/**","/backups/**").permitAll()
+            //.requestMatchers("").hasRole("ADMIN")
             .anyRequest()
             .authenticated())
             .addFilterBefore(jwtValidationFilter,UsernamePasswordAuthenticationFilter.class)
